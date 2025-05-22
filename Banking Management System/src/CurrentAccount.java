@@ -4,10 +4,16 @@ public class CurrentAccount extends BankingAccount {
     }
 
     @Override
-    public void widthdraw(int amount){
+    public void widthdraw(int amount) throws CustomException{
         if(balance > 1000 && amount < balance){
-            balance -= amount;
-            System.out.println("Withdraw was successfull.");
+            if(balance-amount<1000){
+                throw new CustomException("You Can't withdraw , Because You Minimum Balance will become less than 1000");
+            }
+            else{
+                balance -= amount;
+                System.out.println("Withdraw was successfull.");
+            }
+
         }
         else {
             System.out.println("Insufficient balance");
