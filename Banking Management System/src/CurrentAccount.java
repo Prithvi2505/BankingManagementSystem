@@ -7,6 +7,7 @@ public class CurrentAccount extends BankingAccount {
     public void widthdraw(int amount){
         if(balance > 1000 && amount < balance){
             balance -= amount;
+            System.out.println("Withdraw was successfull.");
         }
         else {
             System.out.println("Insufficient balance");

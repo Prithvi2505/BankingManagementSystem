@@ -18,7 +18,14 @@ public class Main {
             System.out.println("6. List All Accounts");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
-            choice = sc.nextInt();
+            try {
+                choice = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid input! Please enter a number.");
+                sc.nextLine(); // clear the invalid input
+                choice = -1; // force the loop to continue
+                continue;
+            }
             sc.nextLine();
 
             switch (choice){
@@ -29,8 +36,17 @@ public class Main {
                     String accHolder = sc.nextLine();
                     System.out.println("Enter Account Number: ");
                     String accNo = sc.nextLine();
-                    System.out.println("Enter Your Initial Balance: ");
-                    int balance = sc.nextInt();
+                    int balance = 0;
+                    try{
+                        System.out.println("Enter Your Initial Balance: ");
+                         balance = sc.nextInt();
+                        sc.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("Invalid balance input. Please enter a numeric value.");
+                        sc.nextLine();
+                        break;
+                    }
+
                     if(type.equals("savings")){
                         bank.createAccount(new SavingsAccount(accHolder,accNo,balance));
                     } else if (type.equals("current")) {
@@ -56,8 +72,16 @@ public class Main {
                     String accNo  = sc.nextLine();
                     BankingAccount acc = bank.getAccount(accNo);
                     if(acc != null) {
+                        int amount =0;
+                        try{
                         System.out.println("Enter Amount: ");
-                        int amount = sc.nextInt();
+                        amount = sc.nextInt();
+                        sc.nextLine();
+                        } catch (Exception e) {
+                            System.out.println("Invalid amount input. Please enter a numeric value.");
+                            sc.nextLine();
+                            break;
+                        }
                         acc.deposit(amount);
                         System.out.println("Deposited successfully.");
                     }
@@ -70,10 +94,17 @@ public class Main {
                     String accNo  = sc.nextLine();
                     BankingAccount acc = bank.getAccount(accNo);
                     if(acc != null) {
-                        System.out.println("Enter Amount: ");
-                        int amount = sc.nextInt();
+                        int amount =0;
+                        try{
+                            System.out.println("Enter Amount: ");
+                            amount = sc.nextInt();
+                            sc.nextLine();
+                        } catch (Exception e) {
+                            System.out.println("Invalid amount input. Please enter a numeric value.");
+                            sc.nextLine();
+                            break;
+                        }
                         acc.widthdraw(amount);
-                        System.out.println("Withdraw was successfull.");
                     }
                     else {
                         System.out.println("Account Not Found");
@@ -91,8 +122,6 @@ public class Main {
                 default -> System.out.println("Invalid option.");
 
             }
-
-
         }while (choice!=0);
         sc.close();
     }

@@ -17,6 +17,7 @@ public class BankSystem {
         return  null;
     }
     public void deleteAccount(String accNo){
+
         BankingAccount acc = getAccount(accNo);
         if(acc!=null){
             accounts.remove(acc);
