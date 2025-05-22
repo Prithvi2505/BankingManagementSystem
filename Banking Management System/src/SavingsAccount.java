@@ -5,10 +5,15 @@ public class SavingsAccount extends BankingAccount{
     }
 
     @Override
-    public void widthdraw(int amount){
+    public void widthdraw(int amount) throws  CustomException{
         if(balance > 500 && amount < balance){
-            balance -= amount;
-            System.out.println("Withdraw was successfull.");
+            if(balance-amount < 500) {
+                throw new CustomException("You Can't withdraw , Because You Minimum Balance will become less than 500");
+            }
+            else {
+                balance -= amount;
+                System.out.println("Withdraw was successfull.");
+            }
         }
         else {
             System.out.println("Insufficient balance");
