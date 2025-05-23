@@ -19,6 +19,13 @@ public abstract class BankingAccount {
         return balance;
     }
 
+    public void  setAccountHolder(String name) {
+        accountHolder = name ;
+    }
+    public  void setBalance(int bal) {
+        balance = bal;
+    }
+
     public void showDetails() {
         System.out.println("Account Holder :"+accountHolder);
         System.out.println("Account Number :"+accountNumber);
@@ -27,5 +34,5 @@ public abstract class BankingAccount {
     public void deposit(int amount){
         balance += amount;
     }
-    public abstract void widthdraw(int amount);
+    public abstract void widthdraw(int amount) throws CustomException;
 }
